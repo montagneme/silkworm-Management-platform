@@ -24,7 +24,7 @@
             </div>
             <div class="check_box">
                 <span class="check_title">光照:</span>
-                <span class="check_result" v-if="(item.sun/100)*100>=30 && (item.sun/100)*100<=50" :style="{backgroundColor:'rgb(47, 121, 47)'}"></span>
+                <span class="check_result" v-if="item.sun>=30 && item.sun<=50" :style="{backgroundColor:'rgb(47, 121, 47)'}"></span>
                 <span class="check_result check_result_warning" v-else :style="{backgroundColor:'rgb(165, 70, 70)'}"></span>
                 <div class="check">
                     <span class="check_value">{{item.sun}}lm</span>
@@ -35,7 +35,7 @@
     </div>
     <transition name="detail">
         <div class="detail" v-if="detailDisplay" @click.stop>
-            <h1 class="detail_title">园区{{thisDetail.index}}</h1>
+            <h1 class="detail_title">园区{{thisDetail.index+1}}</h1>
             <p class="detail_ul_title">环境与数据概况表</p>
             <ul class="detail_ul">
                 <!-- <li>
@@ -79,12 +79,12 @@
                     <div class="num_control">
                         <p class="control_title">当前平均温度</p>
                         <div class="control">
-                            <div class="control_last">-</div>
+                            <div class="control_last" @click="TemControl(thisDetail.index,0)">-</div>
                             <div class="control_value">
-                                <input type="text" class="control_value_input" value="37">
+                                <input type="text" class="control_value_input" v-model="mockAvg[thisDetail.index].tem">
                                 <span class="control_value_unit">℃</span>
                             </div>
-                            <div class="control_next">+</div>
+                            <div class="control_next" @click="TemControl(thisDetail.index,1)">+</div>
                         </div>
                     </div>
                 </div>
@@ -93,12 +93,12 @@
                     <div class="num_control">
                         <p class="control_title">当前平均湿度</p>
                         <div class="control">
-                            <div class="control_last">-</div>
+                            <div class="control_last" @click="HumControl(thisDetail.index,0)">-</div>
                             <div class="control_value">
-                                <input type="text" class="control_value_input" value="37">
+                                <input type="text" class="control_value_input" v-model="mockAvg[thisDetail.index].hum">
                                 <span class="control_value_unit">%</span>
                             </div>
-                            <div class="control_next">+</div>
+                            <div class="control_next"  @click="HumControl(thisDetail.index,1)">+</div>
                         </div>
                     </div>
                 </div>
@@ -107,12 +107,12 @@
                     <div class="num_control">
                         <p class="control_title">当前平均光照</p>
                         <div class="control">
-                            <div class="control_last">-</div>
+                            <div class="control_last" @click="SunControl(thisDetail.index,0)">-</div>
                             <div class="control_value">
-                                <input type="text" class="control_value_input" value="37">
+                                <input type="text" class="control_value_input" v-model="mockAvg[thisDetail.index].sun">
                                 <span class="control_value_unit">lm</span>
                             </div>
-                            <div class="control_next">+</div>
+                            <div class="control_next" @click="SunControl(thisDetail.index,1)">+</div>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ export default {
             thisDetail:{},
             detail:[
                 {
-                    index:1,
+                    index:0,
                     total:0,
                     weight:0,
                     survivalRate:0,
@@ -162,7 +162,7 @@ export default {
                     sun:[120, 132, 200, 134, 277, 230, 210]
                 },
                 {
-                    index:2,
+                    index:1,
                     total:0,
                     weight:0,
                     survivalRate:0,
@@ -173,7 +173,7 @@ export default {
                     sun:[120, 128, 200, 134, 384, 230, 210]
                 },
                 {
-                    index:3,
+                    index:2,
                     total:25233,
                     weight:0,
                     survivalRate:0,
@@ -184,7 +184,7 @@ export default {
                     sun:[120, 294, 200, 184, 277, 230, 210]
                 },
                 {
-                    index:4,
+                    index:3,
                     total:0,
                     weight:0,
                     survivalRate:0,
@@ -398,7 +398,29 @@ export default {
                         data:[120, 132, 101, 134, 90, 230, 210]
                     }
                 ]
-            }
+            },
+            mockAvg:[
+                {
+                    tem:25,
+                    hum:70,
+                    sun:40
+                },
+                {
+                    tem:27,
+                    hum:65,
+                    sun:44
+                },
+                {
+                    tem:22,
+                    hum:62,
+                    sun:32
+                },
+                {
+                    tem:29,
+                    hum:68,
+                    sun:37
+                }
+            ]
         }
     },
     mounted() {
@@ -407,11 +429,22 @@ export default {
     methods: {
         mockDataChange(){
             setInterval(()=>{
-                this.general.forEach(e => {
-                    e.tem=parseInt(Math.random()*20+20);
-                    e.hum=parseInt(Math.random()*100);
-                    e.sun=parseInt(Math.random()*100);
-                });
+                
+                for(let i=0;i<4;i++){
+                    let tem=parseInt(Math.random()*4+this.mockAvg[i].tem-2);
+                    let hum=parseInt(Math.random()*8+this.mockAvg[i].hum-4);
+                    let sun=parseInt(Math.random()*8+this.mockAvg[i].sun-4);
+                    this.detail[i].tem.shift();
+                    this.detail[i].tem.push(tem);
+                    this.detail[i].hum.shift();
+                    this.detail[i].hum.push(hum);
+                    this.detail[i].sun.shift();
+                    this.detail[i].sun.push(sun);
+                    //
+                    this.general[i].tem=tem;
+                    this.general[i].hum=hum;
+                    this.general[i].sun=sun;
+                }
             },1000);
         },
         Detail(i){
@@ -425,7 +458,28 @@ export default {
             if(this.detailDisplay){
                 this.detailDisplay=false;
             }
-        }
+        },
+        TemControl(i,c){//c:0 减 c:1 加
+            if(c==0){
+                this.mockAvg[i].tem--;
+            }else if(c==1){
+                this.mockAvg[i].tem++;
+            }
+        },
+        HumControl(i,c){//c:0 减 c:1 加
+            if(c==0){
+                this.mockAvg[i].hum--;
+            }else if(c==1){
+                this.mockAvg[i].hum++;
+            }
+        },
+        SunControl(i,c){//c:0 减 c:1 加
+            if(c==0){
+                this.mockAvg[i].sun--;
+            }else if(c==1){
+                this.mockAvg[i].sun++;
+            }
+        },
     },
 }
 </script>
