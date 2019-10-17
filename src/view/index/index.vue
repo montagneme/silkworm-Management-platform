@@ -226,7 +226,17 @@ export default {
                                 color:'#a10024aa'
                             }
                         },
-                        areaStyle: {},
+                        areaStyle: {
+                            normal: {
+                                color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#a10024aa'
+                                }, {
+                                    offset: 1,
+                                    color: '#ffe'
+                                }])
+                            }
+                        },
                         data:[120, 132, 101, 134, 90, 230, 210]
                     },
                     {
@@ -246,7 +256,13 @@ export default {
                         },
                         areaStyle: {
                             normal: {
-                               
+                                color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#7badb5'
+                                }, {
+                                    offset: 1,
+                                    color: '#ffe'
+                                }])
                             }
                         },
                         data:[820, 932, 901, 934, 1290, 1330, 1320]
@@ -255,7 +271,9 @@ export default {
             },
             cityData:{
                 title: {
-                    text: '堆叠区域图'
+                    left: 'center',
+                    text: '城市分布',
+                    subtext: ''
                 },
                 visualMap: {
                     show: false,

@@ -13,6 +13,7 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/chart/pie'
 
 Vue.component('chart', ECharts)
+Vue.prototype.$echarts = ECharts;
 Vue.use(view);
 Vue.config.productionTip = false
 

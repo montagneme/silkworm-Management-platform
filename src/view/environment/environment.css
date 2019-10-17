@@ -177,7 +177,7 @@
 
 .detail{
     position: absolute;
-    width: 800px;
+    width: 900px;
     height: 600px;
     top: 0px;
     left: 0px;
@@ -206,8 +206,8 @@
 }
 .detail_ul{
     width: 100%;
-    height: 70px;
-    margin-top: 5px;
+    height: 95px;
+    margin-top: 10px;
 }
 .detail_ul_title{
     height: 30px;
@@ -217,20 +217,111 @@
     margin-top: 15px;
 }
 .detail_ul li{
-    width: 100%;
-    height: 35px;
-    border-bottom: 1px solid black;
+    width: 18%;
+    margin-left: 2.5%;
+    float: left;
+    height: 95px;
+    border-radius: 6px;
     box-sizing: border-box;
+    padding: 8px;
 }
 .detail_ul li:first-child{
-    border-top: 1px solid black;
+    margin-left: 0px;
 }
-.detail_ul li span{
-    display: block;
+.detail_ul li p{
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    font-size: 13px;
+}
+.detail_ul li p:first-child{
+    font-size: 15px;
+    font-weight: bold;
+}
+.detail_chart{
+    width: 100%;
+    height: 300px;
+    margin-top: 30px;
+}
+.num_chart{
+    width: 32%;
+    height: 300px;
     float: left;
+    margin-left: 2%;
+}
+.num_chart:first-child{
+    margin-left: 0px;
+}
+.chart{
+    width: 100%;
+    height: 200px;
+}
+.num_control{
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.control_title{
+    height: 40px;
+    line-height: 40px;
+    margin-left: 5%;
+    text-align: center;
+}
+.control{
+    width: 70%;
+    height: 40px;
+    margin-left: 15%;
+}
+.control_last,.control_next{
     width: 20%;
+    height: 35px;
+    float: left;
+    margin-left: 5%;
+    line-height: 35px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color .2s;
+}
+.control_last{
+    background-color: #d56769ee;
+
+}
+.control_next{
+    background-color: #9ac5afee;
+}
+.control_last:hover{
+    background-color: #d56769ff;
+}
+.control_next:hover{
+    background-color: #9ac5afff;
+}
+.control_value{
+    width: 45%;
+    height: 35px;
+    float: left;
+    margin-left: 5%;
+}
+.control_value_input{
+    width: 70%;
+    height: 35px;
+    border: 1px solid rgb(200,200,200);
+    outline: none;
+    border-radius: 5px;
+    text-align: center;
+    float: left;
+    box-sizing: border-box;
+}
+.control_value_unit{
+    display: block;
+    width: 30%;
     height: 35px;
     line-height: 35px;
     text-align: center;
-    font-size: 12px;
+    float: left;
 }
