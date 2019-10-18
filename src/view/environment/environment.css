@@ -312,6 +312,7 @@
     height: 35px;
     border: 1px solid rgb(200,200,200);
     outline: none;
+    line-height: 35px;
     border-radius: 5px;
     text-align: center;
     float: left;

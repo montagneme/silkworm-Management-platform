@@ -69,31 +69,31 @@ export default {
         return {
             infoList:[
                 {
-                    content:'李铭洋偷吃了一个蚕',
+                    content:'生产量提高量2%',
                     time:'1998-05-22'
                 },
                 {
-                    content:'李铭洋又偷吃了一个蚕',
+                    content:'园区2温度偏高',
                     time:'1998-05-22'
                 },
                 {
-                    content:'李铭洋偷吃了一个蚕',
+                    content:'生产量提高量2%',
                     time:'1998-05-22'
                 },
                 {
-                    content:'李铭洋又偷吃了一个蚕',
+                    content:'园区2温度偏高',
                     time:'1998-05-22'
                 },
                 {
-                    content:'李铭洋偷吃了一个蚕',
+                    content:'交易成功率为80%',
                     time:'1998-05-22'
                 },
                 {
-                    content:'李铭洋又偷吃了一个蚕',
+                    content:'园区2温度偏高',
                     time:'1998-05-22'
                 },
                 {
-                    content:'李铭洋偷吃了一个蚕',
+                    content:'园区2温度偏高',
                     time:'1998-05-22'
                 },
             ],

@@ -81,7 +81,7 @@
                         <div class="control">
                             <div class="control_last" @click="TemControl(thisDetail.index,0)">-</div>
                             <div class="control_value">
-                                <input type="text" class="control_value_input" v-model="mockAvg[thisDetail.index].tem">
+                                <input type="text" class="control_value_input" v-model="mockAvgInput[thisDetail.index].tem">
                                 <span class="control_value_unit">℃</span>
                             </div>
                             <div class="control_next" @click="TemControl(thisDetail.index,1)">+</div>
@@ -95,7 +95,7 @@
                         <div class="control">
                             <div class="control_last" @click="HumControl(thisDetail.index,0)">-</div>
                             <div class="control_value">
-                                <input type="text" class="control_value_input" v-model="mockAvg[thisDetail.index].hum">
+                                <input type="text" class="control_value_input" v-model="mockAvgInput[thisDetail.index].hum">
                                 <span class="control_value_unit">%</span>
                             </div>
                             <div class="control_next"  @click="HumControl(thisDetail.index,1)">+</div>
@@ -109,7 +109,7 @@
                         <div class="control">
                             <div class="control_last" @click="SunControl(thisDetail.index,0)">-</div>
                             <div class="control_value">
-                                <input type="text" class="control_value_input" v-model="mockAvg[thisDetail.index].sun">
+                                <input type="text" class="control_value_input" v-model="mockAvgInput[thisDetail.index].sun">
                                 <span class="control_value_unit">lm</span>
                             </div>
                             <div class="control_next" @click="SunControl(thisDetail.index,1)">+</div>
@@ -420,6 +420,28 @@ export default {
                     hum:68,
                     sun:37
                 }
+            ],
+            mockAvgInput:[ 
+                {
+                    tem:25,
+                    hum:70,
+                    sun:40
+                },
+                {
+                    tem:27,
+                    hum:65,
+                    sun:44
+                },
+                {
+                    tem:22,
+                    hum:62,
+                    sun:32
+                },
+                {
+                    tem:29,
+                    hum:68,
+                    sun:37
+                }
             ]
         }
     },
@@ -429,11 +451,11 @@ export default {
     methods: {
         mockDataChange(){
             setInterval(()=>{
-                
+                console.log(this.mockAvg[1].sun);
                 for(let i=0;i<4;i++){
-                    let tem=parseInt(Math.random()*4+this.mockAvg[i].tem-2);
-                    let hum=parseInt(Math.random()*8+this.mockAvg[i].hum-4);
-                    let sun=parseInt(Math.random()*8+this.mockAvg[i].sun-4);
+                    let tem=parseInt(Math.random()*4+parseInt(this.mockAvg[i].tem)-2);
+                    let hum=parseInt(Math.random()*8+parseInt(this.mockAvg[i].hum)-4);
+                    let sun=parseInt(Math.random()*8+parseInt(this.mockAvg[i].sun)-4);
                     this.detail[i].tem.shift();
                     this.detail[i].tem.push(tem);
                     this.detail[i].hum.shift();
@@ -465,6 +487,7 @@ export default {
             }else if(c==1){
                 this.mockAvg[i].tem++;
             }
+            this.mockAvgInput[i].tem=this.mockAvg[i].tem;
         },
         HumControl(i,c){//c:0 减 c:1 加
             if(c==0){
@@ -472,6 +495,7 @@ export default {
             }else if(c==1){
                 this.mockAvg[i].hum++;
             }
+            this.mockAvgInput[i].hum=this.mockAvg[i].hum;
         },
         SunControl(i,c){//c:0 减 c:1 加
             if(c==0){
@@ -479,6 +503,7 @@ export default {
             }else if(c==1){
                 this.mockAvg[i].sun++;
             }
+            this.mockAvgInput[i].sun=this.mockAvg[i].sun;
         },
     },
 }
